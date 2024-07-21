@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use DB;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AdminTablesSeeder extends Seeder
 {
@@ -228,6 +230,29 @@ class AdminTablesSeeder extends Seeder
                 [
                     "permission_id" => 9,
                     "role_id" => 2
+                ]
+            ]
+        );
+
+        DB::table('admin_users')->insert(
+            [
+                [
+                    'username' => 'admin',
+                    'password' => Hash::make("admin,123456"), // password
+                    'name' => '管理员',
+                    'avatar' => "",
+                    'remember_token' => Str::random(10),
+                    'created_at'=>date('Y-m-d H:i:s')
+                ]
+            ]
+        );
+
+        DB::table('admin_role_users')->insert(
+            [
+                [
+                    'role_id' => 1,
+                    'user_id' => 1,
+                    'created_at'=>date('Y-m-d H:i:s')
                 ]
             ]
         );
